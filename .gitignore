@@ -1,2 +1,4 @@
 *.pdf
 movilidad/*.class
+movilidad/*.ctxt
+movilidad/*.bluej
