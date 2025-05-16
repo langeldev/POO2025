@@ -11,7 +11,7 @@ public class Base
     private String nombre;
     private Coordenadas coordenadas;
     protected int plazasOcupadas;
-    private Vehiculo[] vehiculos;
+    private VehiculoBase[] vehiculos;
     private Vehiculo.Tipo tipoVehiculo;
     
     
@@ -32,19 +32,18 @@ public class Base
         this.coordenadas = coordenadas;
         this.tipoVehiculo = tipoVehiculo;
         this.plazasOcupadas = 0;
-        this.vehiculos = new Vehiculo[plazas];
+        this.vehiculos = new VehiculoBase[plazas];
         this.estado = Estado.LIBRE;
         
     }
     
-    public void agregarVehiculo(int index, Vehiculo vehiculo)
+    public void agregarVehiculo(int index, VehiculoBase vehiculo)
     {
-        
-       
         if ((index < this.vehiculos.length && index > -1) && this.vehiculos[index] == null) {
             if (isTipoValido(vehiculo.getTipo())) {
                 vehiculos[index] = vehiculo;
                 this.plazasOcupadas++;
+                vehiculo.setBase(this);
                 actualizarEstado();
             } else {
                  System.out.println("Vehiculo no compatible con la base");
@@ -54,12 +53,13 @@ public class Base
         }
     }
     
-    public Vehiculo retirarVehiculo(int index)
+    public VehiculoBase retirarVehiculo(int index)
     {
-        Vehiculo vehiculo = null;
+        VehiculoBase vehiculo = null;
         if ((index < this.vehiculos.length && index > -1) && this.vehiculos[index] != null) {
             vehiculo = vehiculos[index];
             vehiculos[index] = null;
+            vehiculo.setBase(null);           
             this.plazasOcupadas--;
             actualizarEstado();
         }
@@ -77,7 +77,7 @@ public class Base
     public void imprimirVehiculos(Vehiculo.Estado estado)
     {
         for (int i = 0; i < vehiculos.length; i++){
-            Vehiculo v = this.getVehiculo(i);
+            VehiculoBase v = this.getVehiculo(i);
             if(v != null && v.getEstado() == estado) {
                 System.out.print("\tplaza: "+ i + " - " + (this.isPlazaLibre(i) ? "Ocupada ": "Libre "));
                 System.out.println("|-> vehiculo: " + (v == null ? "":  v ));
@@ -85,7 +85,7 @@ public class Base
         }
     }
     
-    public Vehiculo getVehiculo(int index) 
+    public VehiculoBase getVehiculo(int index) 
     {
         return vehiculos[index];
     }
@@ -97,6 +97,16 @@ public class Base
         } else {
             this.estado = Estado.LLENO;
         }
+    }
+    
+    public Estado getEstado()
+    {
+        return this.estado;
+    }
+    
+    public void setEstado(Base.Estado estado)
+    {
+        this.estado = estado;
     }
    
     public boolean isTipoValido(Vehiculo.Tipo tipo){
@@ -124,7 +134,9 @@ public class Base
    
     public String toString()
     {
-        return "Nombre: " + nombre + " | Tipo ["+ this.tipoVehiculo +"] | " + this.coordenadas +  "|  Estado: " + this.estado + " - " + this.plazasOcupadas + "/" + this.vehiculosSize() ; 
+        return "Nombre: " + nombre + " | Tipo ["+ this.tipoVehiculo +"] | " + this.coordenadas +  "|  Estado: " + this.estado + " - " + this.plazasOcupadas + "/" + this.vehiculosSize(); 
     }
+    
+    
  
 }

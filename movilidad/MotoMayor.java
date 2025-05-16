@@ -5,31 +5,25 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Moto extends Vehiculo
+public class MotoMayor extends Vehiculo
 {
     // instance variables - replace the example below with your own
-    private int cilindrada;
     private Coordenadas coordenadas;
 
-    public Moto()
-    {
-         super(Tipo.MOTO);
-    }
-    
     /**
      * Constructor for objects of class Moto
      */
-    public Moto(Coordenadas coordenadas)
+    public MotoMayor(Coordenadas coordenadas)
     {
         // initialise instance variables
-        super(Tipo.MOTO);
+        super(Tipo.MOTO_MAYOR);
         this.coordenadas = coordenadas;
       
     }
     
     public void actualizarBateria(float consumo)
     {
-        consumo *= 0.4;
+        consumo *= 0.25;
         super.actualizarBateria(consumo);
     }
     
@@ -46,7 +40,7 @@ public class Moto extends Vehiculo
     
     public String toString()
     {
-        return this.coordenadas + " " +  super.toString();
+        return (this.coordenadas == null? "En mantenimieto": this.coordenadas) + " " +  super.toString();
     }
 
   

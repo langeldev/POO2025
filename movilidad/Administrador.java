@@ -16,10 +16,14 @@ public class Administrador extends Empleado
         super(nombre, apellidos,"AD-" + id);
     }
     
-    public void darAltaUsuario(String nombre, String apellidos,String dni)
+    public void darAltaUsuario(Usuario usuario)
     {
-        Usuario usuario = new Usuario(nombre, apellidos, dni);
         Datos.addUsuario(usuario);
+    }
+    
+    public void darAltaEmpleado(Empleado emple)
+    {
+        Datos.addEmpleado(emple);
     }
     
     public void promocionarPremium(Usuario usuario)
@@ -27,16 +31,27 @@ public class Administrador extends Empleado
         usuario.promocionar();
     }
     
-    public void crearBase(String nombre, Vehiculo.Tipo tipo,int capacidad, Coordenadas coordenadas)
+    
+    public void crearBase(Base base)
     {
-        Base base = new Base(nombre,tipo,coordenadas, capacidad);
         Datos.addBase(base);
+        System.out.println("\n########################################\n"+ base + " creada con exito!\n########################################");
     }
     
     public void crearVehiculo(Vehiculo vehiculo){
         Datos.addVehiculo(vehiculo);
+        System.out.println("\n########################################\n"+ vehiculo + " creado con exito!\n########################################");
     }
     
+    public String toString()
+    {
+        return "Perfil: Administrador |" + super.toString();
+    }
+    
+    public void verIncidencias(Incidencia.Estado estado)
+    {
+        Datos.imprimirIncidencias(estado); 
+    }
     
     
 }

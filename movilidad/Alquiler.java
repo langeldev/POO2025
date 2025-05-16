@@ -12,18 +12,15 @@ public class Alquiler
 {
     // instance variables - replace the example below with your own
     private long timestamp;
-    private int tiempo;
+    private int tiempo, descuento;
     
     private Vehiculo vehiculo;
     private Base baseOrigen, baseDestino;
+    private Coordenadas coordOrigen, coordDestino;
 
-    private double importeTotal;
+    private double importeTotal, precioActual, bateria;;
     private LocalDateTime fecha;
-    
-    private double precioActual;
-    private int descuento; 
-    
-
+   
     /**
      * Constructor for objects of class Alquiler
      */
@@ -37,16 +34,29 @@ public class Alquiler
         this.fecha = date;
     }
     
-    public Alquiler(Vehiculo vehiculo,LocalDateTime date,Base BaseOrigen,Base baseDestino)
+   
+    public Alquiler(VehiculoBase vehiculo,LocalDateTime date,Base BaseOrigen,Base baseDestino)
     {
         this(vehiculo,date);
+        this.vehiculo = vehiculo;
         this.baseOrigen = BaseOrigen;
         this.baseDestino =baseDestino;
     }
     
-    public Alquiler(Vehiculo vehiculo)
+    public Alquiler(MotoMenor vehiculo, LocalDateTime date, Coordenadas coord)
     {
-        
+        this(vehiculo,date);
+        this.coordOrigen = vehiculo.getCoordenadas();
+        this.coordDestino = coord;
+        vehiculo.setCoordenadas(coord);
+    }
+    
+    public Alquiler(MotoMayor vehiculo, LocalDateTime date, Coordenadas coord)
+    {
+        this(vehiculo,date);
+        this.coordOrigen = vehiculo.getCoordenadas();
+        this.coordDestino = coord;
+        vehiculo.setCoordenadas(coord);
     }
     
     
@@ -86,14 +96,15 @@ public class Alquiler
         this.vehiculo.actualizarBateria(this.getMinutos());
         this.vehiculo.setEstado(Vehiculo.Estado.LIBRE);
         double factura = (this.getMinutos() * this.getPrecioActual());
+        this.bateria = this.vehiculo.getBateria();
         //penalizacion si no es premium
-        if (this.descuento == 0 && this.vehiculo.getBateria() < 20){
+        if (this.descuento == 0 && this.bateria < 20){
             factura += 1;
         }
         // descuento premium
         if (this.descuento > 0) {
             factura -= ((factura * this.descuento) /100);
-            if (this.vehiculo.getBateria() < 10) {
+            if (this.vehiculo.getBateria() < 1) {
                 factura += 1;
             }
         }
@@ -120,7 +131,8 @@ public class Alquiler
         String texto = "+++++++++++++++++++++++++++++++++++++++++++++++++++" +
                     "\nVehiculo alquilado: "+ this.vehiculo.getTipo() +
                     "\nMinutos del alquiler: " + getMinutos() + " minutos\nFecha: "+ fecha.format(dateFormat) +
-                    "\nPrecio: " + currentformat.format(getPrecioActual()) + "€/min";
+                    "\nPrecio: " + currentformat.format(getPrecioActual()) + "€/min"
+                    +"\nBateria al finalizar: " + this.bateria + "%\n\n_______________________________________________";
                     
         if (this.descuento == 0 && this.vehiculo.getBateria() < 20){
             texto += "\nPenalizacion: 1€";

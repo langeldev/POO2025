@@ -1,19 +1,23 @@
 import java.util.ArrayList;
+import java.time.LocalDate;
 public class Usuario extends Persona
 {
-    private boolean premium;
+    private boolean premium, promocionPremium;
     private double saldo;
     private String dni;
     private Alquiler alquiler = null;
     private ArrayList<Alquiler> historial = new ArrayList<Alquiler>();
-    
+    private LocalDate fechaNac;
     private static int descuentoPremium = 20;
+    
   
-    public Usuario(String nombre, String apellidos, String dni)
+    public Usuario(String nombre, String apellidos, String dni, LocalDate date)
     {
         super(nombre,apellidos);
         this.dni = dni;
-        this.premium = true;
+        this.fechaNac = date;
+        this.promocionPremium = false;
+        this.premium = false;
     }
     
     public String getDNI()
@@ -33,9 +37,23 @@ public class Usuario extends Persona
     
     public void promocionar()
     {
-        this.setPremium(true);
+        if (this.isPromocionPremium()) {
+             this.setPremium(true);
+             this.setPromocionPremium(false);
+             System.out.println(this);
+        }
+       
     }
     
+    public boolean isPromocionPremium()
+    {
+        return this.promocionPremium;
+    }
+    
+    public void setPromocionPremium(boolean premium)
+    {
+        this.promocionPremium = premium;
+    }   
     
     public Alquiler getAlquiler()
     {
@@ -77,11 +95,10 @@ public class Usuario extends Persona
     public void desalquilar()
     {
         if (this.alquiler != null) {
-           
             this.alquiler.hacerPago();
             this.cargarSaldo(-this.alquiler.getImporte());
             System.out.println(this.alquiler);
-            System.out.println(this.alquiler.getVehiculo().getBateria()+"%");
+            System.out.println("\n+ Gracias por usar nuestros vehiculos!");
             this.alquiler = null;
          }
     }
@@ -116,7 +133,7 @@ public class Usuario extends Persona
     
     public String toString()
     {
-        return this.dni + " - " + super.toString();
+        return this.dni + " - " + super.toString() + " fecha de nacimiento: " + this.fechaNac +(this.promocionPremium ? " | El usuario puede ser promocionado a premium": "") + (this.premium ? " | Usuario Premium": ""  );
     }
 
 }

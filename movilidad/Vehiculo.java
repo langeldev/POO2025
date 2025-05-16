@@ -10,9 +10,9 @@ public abstract class Vehiculo
     // instance variables - replace the example below with your own
     private double bateria;
     
-    public enum Estado {LIBRE, OCUPADO, FALLO, RESERVADO};
+    public enum Estado {LIBRE, OCUPADO, FALLO, MANTENIMIENTO,RESERVADO};
     public enum Tipo {
-        PATINETE("Patinete"),BICICLETA("Bicicleta"), MOTO("Moto");
+        PATINETE("Patinete"),BICICLETA("Bicicleta"), MOTO_MENOR("Moto pequeña"), MOTO_MAYOR("Moto grande");
         private String nombre;
         Tipo(String nombre) {this.nombre = nombre;}
         public String toString(){return nombre;}
@@ -26,8 +26,9 @@ public abstract class Vehiculo
        this.tipo = tipo;
     }
     
-     public Vehiculo(Estado estado)
+     public Vehiculo(Tipo tipo, Estado estado)
     {
+       this(tipo);
        this.estado = estado;
     }
     
@@ -62,6 +63,12 @@ public abstract class Vehiculo
     {
         return this.tipo;
     }
+    
+    public boolean isTipoValido(Vehiculo.Tipo tipo)
+    {
+        return this.getTipo() == tipo;
+    }
+
     
     public String toString()
     {

@@ -18,6 +18,11 @@ public class Empleado extends Persona
     {
         return this.id;
     }
+    
+    public String toString()
+    {
+        return "ID:" + this.id + " | " + super.toString();
+    }
 
  
 }
