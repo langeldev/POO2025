@@ -1,10 +1,4 @@
 
-/**
- * Write a description of class Moto here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class MotoMenor extends Vehiculo
 {
     // instance variables - replace the example below with your own
@@ -42,6 +36,4 @@ public class MotoMenor extends Vehiculo
     {
          return (this.coordenadas == null? "En mantenimieto": this.coordenadas) + " " +  super.toString();
     }
-
-  
 }

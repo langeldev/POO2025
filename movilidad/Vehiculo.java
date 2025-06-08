@@ -1,10 +1,4 @@
 
-/**
- * Write a description of class Vehiculo here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public abstract class Vehiculo
 {
     // instance variables - replace the example below with your own
@@ -19,6 +13,7 @@ public abstract class Vehiculo
 };
     private Estado estado = Estado.LIBRE;
     private Tipo tipo;
+    private UsuarioPremium usuarioReservado;
     
     public Vehiculo(Tipo tipo)
     {
@@ -75,4 +70,13 @@ public abstract class Vehiculo
         return "Tipo vehiculo: " + this.tipo +" | Estado: " + this.estado + " | Bateria: "+this.bateria + "%";
     }
     
+    public UsuarioPremium getUsuarioReservado()
+    {
+        return this.usuarioReservado;
+    }
+    
+    public void setUsuarioReservado(UsuarioPremium usu)
+    {
+        this.usuarioReservado = usu;
+    }
 }

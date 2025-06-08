@@ -1,10 +1,4 @@
 
-/**
- * Write a description of class Patinete here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Patinete extends VehiculoBase
 {
      
@@ -27,13 +21,4 @@ public class Patinete extends VehiculoBase
     {
         return super.toString();
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

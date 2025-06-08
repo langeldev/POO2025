@@ -21,9 +21,8 @@ public class Datos
        addEmpleado(admin);
         
        //Creacion de usuarios 
-       Usuario usu1 =new Usuario("Juan Carlos", "Smith", "premium", LocalDate.of(1994, 2, 1));
+       Usuario usu1 =new UsuarioPremium("Juan Carlos", "Smith", "premium", LocalDate.of(1994, 2, 1));
        addUsuario(usu1);
-       usu1.setPremium(true);
        usu1.cargarSaldo(8.9);
        
     

@@ -2,12 +2,7 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
-/**
- * Write a description of class Alquiler here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+
 public class Alquiler
 {
     // instance variables - replace the example below with your own
@@ -57,6 +52,11 @@ public class Alquiler
         this.coordOrigen = vehiculo.getCoordenadas();
         this.coordDestino = coord;
         vehiculo.setCoordenadas(coord);
+    }
+    
+    public LocalDateTime getFecha()
+    {
+        return this.fecha;
     }
     
     
@@ -145,10 +145,6 @@ public class Alquiler
             }   
         }            
         texto += "\nImporte: " + currentformat.format(getImporte()) + "€"; 
-        return texto;
-                
-                
-              
-                
+        return texto;       
     }
 }

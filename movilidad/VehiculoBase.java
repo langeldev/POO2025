@@ -1,10 +1,4 @@
 
-/**
- * Write a description of class VehiculoBase here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public abstract class VehiculoBase extends Vehiculo
 {
     private Base base;
@@ -25,6 +19,4 @@ public abstract class VehiculoBase extends Vehiculo
         return this.base;
     }
 
-    
-   
 }

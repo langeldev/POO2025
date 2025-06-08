@@ -41,12 +41,8 @@ public class Mecanico extends Empleado
          System.out.println("La incidencia ya no esta asignada a " + super.getID());
     }
     
-    
-    
     public String toString()
     {
         return "Perfil: Mecanico |" + super.toString();
     }
-
-   
 }

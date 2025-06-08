@@ -1,10 +1,5 @@
 import java.time.LocalDate;
-/**
- * Write a description of class Incidencia here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+
 public class Incidencia
 {
     // instance variables - replace the example below with your own

@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 public class Usuario extends Persona
 {
     private boolean premium, promocionPremium;
@@ -47,6 +49,11 @@ public class Usuario extends Persona
     
     public boolean isPromocionPremium()
     {
+        List<Alquiler> historial = this.historial; 
+        LocalDateTime ahora = LocalDateTime.now();
+        long alquilerUltimoMes = historial.stream()
+            .filter(a ->a.getFecha().isAfter(ahora.minusMonths(1))).count();
+            System.out.println(alquilerUltimoMes);
         return this.promocionPremium;
     }
     
@@ -133,7 +140,7 @@ public class Usuario extends Persona
     
     public String toString()
     {
-        return this.dni + " - " + super.toString() + " fecha de nacimiento: " + this.fechaNac +(this.promocionPremium ? " | El usuario puede ser promocionado a premium": "") + (this.premium ? " | Usuario Premium": ""  );
+        return this.dni + " - " + super.toString() + " fecha de nacimiento: " + this.fechaNac +(this.isPromocionPremium() ? " | El usuario puede ser promocionado a premium": "") + (this.premium ? " | Usuario Premium": ""  );
     }
 
 }

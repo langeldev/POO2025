@@ -33,9 +33,7 @@ public class Mantenimiento extends Empleado
                      System.out.println(i + " - "+ v  );
                 } 
             }
-        }
-        
-       
+        }  
     }
     
     /**

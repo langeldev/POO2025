@@ -570,15 +570,6 @@ public class Menu
     
     //Gestion vehiculos
     
-    
-    /*================================================
-     * FIN Menus del administrador 
-     ===============================================*/
-    
-     /**
-     * Opciones del administrador de la aplicacion
-     */
-    
     public void verUsuarios()
     {
         Datos.imprimirUsuarios();
@@ -797,6 +788,10 @@ public class Menu
         }
     }
     
+     
+    /*================================================
+     * FIN Menus del administrador 
+     ===============================================*/
     /** Metodos comunes del menu*/
     /**
      * Menu de seleccion de tipos de vehiculos

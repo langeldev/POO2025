@@ -1,10 +1,4 @@
 
-/**
- * Write a description of class Base here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Base
 {
     // instance variables - replace the example below with your own
@@ -136,7 +130,4 @@ public class Base
     {
         return "Nombre: " + nombre + " | Tipo ["+ this.tipoVehiculo +"] | " + this.coordenadas +  "|  Estado: " + this.estado + " - " + this.plazasOcupadas + "/" + this.vehiculosSize(); 
     }
-    
-    
- 
 }
